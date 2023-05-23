@@ -4,11 +4,16 @@ import Link from 'next/link'
 import styles from '/src/styles/Formlogin.module.css';
 import { HiAtSymbol,HiEyeOff,HiEye } from "react-icons/hi";
 import { useState } from 'react';
+import {signIn, signOut } from "next-auth/react"
+//BUENO ME FALTA LA WEBONADA DE 
 
 export default function login() {
     
     const[show,setshow]= useState(false)
-
+    //Google Handler function
+    async function handleGoogleSignin(){
+        signIn('google', {callbackUrl:"http://localhost:3000/"})
+    }
     return (
         <Layout>
             <Head>
@@ -62,14 +67,8 @@ export default function login() {
                     </div>
 
                     <div className="input-buttom">
-                    <button type='button' className={styles.button_custom}>
+                    <button type='button' onClick={handleGoogleSignin} className={styles.button_custom}>
                             Iniciar Google
-                        </button>
-                    </div>
-
-                    <div className="input-buttom">
-                    <button type='button' className={styles.button_custom}>
-                            Iniciar GitHub
                         </button>
                     </div>
 
